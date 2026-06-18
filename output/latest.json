@@ -1,0 +1,22 @@
+{
+  "timestamp_jst": "2026-06-18T13:52:35.767166+09:00",
+  "valuation_date": "2026-06-18",
+  "US10Y_real_yield": 0.021400000000000002,
+  "US10Y_real_yield_date": "2026-06-16",
+  "US2Y_treasury": 0.0405,
+  "US2Y_treasury_date": "2026-06-16",
+  "SOFR": 0.0363,
+  "SOFR_date": "2026-06-16",
+  "USD_2Y_OIS": 0.03652173636069467,
+  "JPY_2Y_OIS": 0.010774972269014693,
+  "OIS_spread": 0.025746764091679974,
+  "USD_2Y2Y_forward": 0.032299761098919966,
+  "JPY_2Y2Y_forward": 0.015239961390707268,
+  "Forward_spread": 0.017059799708212697,
+  "Rate_score": 1.029870563667199,
+  "Forward_score": 0.6823919883285079,
+  "Real_yield_score": 1.9517919581021634,
+  "Macro_score": 1.138733410907398,
+  "Regime": "USDJPY BULL",
+  "data_note": "OIS curves are built from data/usd_ois_quotes.csv and data/jpy_ois_quotes.csv. Replace these quotes with live or verified market quotes for production use."
+}
