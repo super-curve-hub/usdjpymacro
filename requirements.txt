@@ -4,3 +4,4 @@ requests
 matplotlib
 QuantLib
 python-dateutil
+yfinance
