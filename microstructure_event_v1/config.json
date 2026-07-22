@@ -1,0 +1,16 @@
+{
+  "symbol": "USDJPY",
+  "start_time_jst": "2026-07-22 16:30:00",
+  "end_time_jst": "2026-07-22 16:35:00",
+  "baseline_start_time_jst": "2026-07-22 15:30:00",
+  "source_timezone": "UTC",
+  "analysis_timezone": "Asia/Tokyo",
+  "rolling_windows_ms": [100, 250, 500, 1000, 2000, 5000],
+  "vpin_bucket_ticks": 100,
+  "paths": {
+    "raw": "data/raw",
+    "cache": "data/cache",
+    "processed": "data/processed",
+    "output": "output"
+  }
+}
