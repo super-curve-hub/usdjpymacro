@@ -1,0 +1,56 @@
+name: USDJPY Microstructure Event
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "microstructure_event_v1/**"
+      - ".github/workflows/microstructure_event.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  run-analysis:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: microstructure_event_v1/requirements.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r microstructure_event_v1/requirements.txt
+
+      - name: Run microstructure analysis
+        run: python microstructure_event_v1/run_pipeline.py
+
+      - name: Publish summary
+        if: always()
+        run: |
+          if [ -f microstructure_event_v1/output/summary.json ]; then
+            echo '## USDJPY Microstructure Event Result' >> "$GITHUB_STEP_SUMMARY"
+            echo '```json' >> "$GITHUB_STEP_SUMMARY"
+            cat microstructure_event_v1/output/summary.json >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload analysis artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: usdjpymicrostructure-event-v1
+          path: |
+            microstructure_event_v1/output/
+            microstructure_event_v1/data/processed/
+          if-no-files-found: warn
+          retention-days: 30
