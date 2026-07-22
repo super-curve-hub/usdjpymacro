@@ -14,7 +14,7 @@ SRC_DIR = PROJECT_DIR / "src"
 os.chdir(NOTEBOOK_DIR)
 sys.path.insert(0, str(SRC_DIR))
 
-from pipeline import (  # noqa: E402
+from pipeline_v11 import (  # noqa: E402
     add_microstructure,
     build_dashboard,
     download_ticks,
@@ -34,7 +34,7 @@ def main() -> None:
     raw, raw_path = download_ticks(cfg)
     processed = preprocess(raw, cfg)
     features = add_microstructure(processed, cfg)
-    scored = score_events(features)
+    scored = score_events(features, cfg)
 
     start = pd.Timestamp(cfg["start_time_jst"], tz=cfg["analysis_timezone"])
     end = pd.Timestamp(cfg["end_time_jst"], tz=cfg["analysis_timezone"])
@@ -62,6 +62,7 @@ def main() -> None:
     result = summary(event)
     result.update(
         {
+            "model_version": "1.1",
             "raw_ticks": int(len(raw)),
             "event_ticks": int(len(event)),
             "raw_path": str(raw_path),
